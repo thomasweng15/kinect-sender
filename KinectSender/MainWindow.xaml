@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KinectSender"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Kinect Sender" 
+        Height="768" Width="1024"
+        Loaded="MainWindow_Loaded">
+    <Grid Margin="10 0 10 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Image x:Name="ColorDisplay" Grid.Row="1" HorizontalAlignment="Center" Stretch="UniformToFill"/>
     </Grid>
 </Window>
