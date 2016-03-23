@@ -25,6 +25,8 @@ namespace KinectSender
 
         private ColorModule colorModule = null;
 
+        private bool isColorChecked = true; // TODO get this from settings file
+
         public MainWindow()
         {
             this.kinectSensor = KinectSensor.GetDefault();
@@ -45,8 +47,13 @@ namespace KinectSender
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.colorModule.MainWindow_Loaded();
+            this.ColorDisplay.Source = (this.isColorChecked) ? this.colorModule.getImageSource() : null;
+        }
 
-            this.ColorDisplay.Source = this.colorModule.getImageSource();
+        private void Toggle_Color(object sender, RoutedEventArgs e)
+        {
+            this.isColorChecked = !this.isColorChecked;
+            this.ColorDisplay.Source = (this.isColorChecked) ? this.colorModule.getImageSource() : null;
         }
     }
 }

@@ -11,8 +11,10 @@
     <Grid Margin="10 0 10 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <Image x:Name="ColorDisplay" Grid.Row="1" HorizontalAlignment="Center" Stretch="UniformToFill"/>
+        <Image x:Name="ColorDisplay" Grid.Row="0" HorizontalAlignment="Center" Stretch="UniformToFill"/>
+        <CheckBox Name="colorChkBox" Grid.Row="1" Content="Hide Color" FontSize="14" Checked="Toggle_Color" Unchecked="Toggle_Color" VerticalAlignment="Center" />
     </Grid>
 </Window>
