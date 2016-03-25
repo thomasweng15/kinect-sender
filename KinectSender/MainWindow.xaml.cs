@@ -54,21 +54,22 @@ namespace KinectSender
             this.BodyDisplay.Source = (this.isColorChecked) ? this.bodyModule.getImageSource() : null;
         }
 
-        private void Toggle_Color(object sender, RoutedEventArgs e)
-        {
-            this.isColorChecked = !this.isColorChecked;
-            this.ColorDisplay.Source = (this.isColorChecked) ? this.colorModule.getImageSource() : null;
-        }
-
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             this.bodyModule.MainWindow_Closing();
+            this.colorModule.MainWindow_Closing();
 
             if (this.kinectSensor != null)
             {
                 this.kinectSensor.Close();
                 this.kinectSensor = null;
             }
+        }
+
+        private void Toggle_Color(object sender, RoutedEventArgs e)
+        {
+            this.isColorChecked = !this.isColorChecked;
+            this.ColorDisplay.Source = (this.isColorChecked) ? this.colorModule.getImageSource() : null;
         }
     }
 }

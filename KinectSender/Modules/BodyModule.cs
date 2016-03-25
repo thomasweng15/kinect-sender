@@ -74,6 +74,15 @@ namespace KinectSender
             }
         }
 
+        public void MainWindow_Closing()
+        {
+            if (this.bodyFrameReader != null)
+            {
+                this.bodyFrameReader.Dispose();
+                this.bodyFrameReader = null;
+            }
+        }
+
         private void Reader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
             using (var bodyFrame = e.FrameReference.AcquireFrame())
@@ -249,15 +258,6 @@ namespace KinectSender
             this.bodyColors.Add(new Pen(Brushes.Blue, 6));
             this.bodyColors.Add(new Pen(Brushes.Indigo, 6));
             this.bodyColors.Add(new Pen(Brushes.Violet, 6));
-        }
-
-        public void MainWindow_Closing()
-        {
-            if (this.bodyFrameReader != null)
-            {
-                this.bodyFrameReader.Dispose();
-                this.bodyFrameReader = null;
-            }
         }
     }
 }

@@ -46,6 +46,15 @@ namespace KinectSender
             }
         }
 
+        public void MainWindow_Closing()
+        {
+            if (this.frameReader != null)
+            {
+                this.frameReader.Dispose();
+                this.frameReader = null;
+            }
+        }
+
         private void Reader_FrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
             ColorFrame colorFrame = null;
