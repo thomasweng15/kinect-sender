@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Kinect Sender" 
         Height="768" Width="1024"
-        Loaded="MainWindow_Loaded">
+        Loaded="MainWindow_Loaded" 
+        Closing="MainWindow_Closing">
     <Grid Margin="10 0 10 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -15,6 +16,7 @@
         </Grid.RowDefinitions>
 
         <Image x:Name="ColorDisplay" Grid.Row="0" HorizontalAlignment="Center" Stretch="UniformToFill"/>
+        <Image x:Name="BodyDisplay" Grid.Row="0" HorizontalAlignment="Center" Stretch="UniformToFill"/>
         <CheckBox Name="colorChkBox" Grid.Row="1" Content="Hide Color" FontSize="14" Checked="Toggle_Color" Unchecked="Toggle_Color" VerticalAlignment="Center" />
     </Grid>
 </Window>

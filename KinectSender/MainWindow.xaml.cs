@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Kinect;
+using System.ComponentModel;
 
 namespace KinectSender
 {
@@ -24,6 +25,7 @@ namespace KinectSender
         private KinectSensor kinectSensor = null;
 
         private ColorModule colorModule = null;
+        private BodyModule bodyModule = null;
 
         private bool isColorChecked = true; // TODO get this from settings file
 
@@ -40,20 +42,33 @@ namespace KinectSender
             }
 
             this.colorModule = new ColorModule(this.kinectSensor);
-            
+            this.bodyModule = new BodyModule(this.kinectSensor);
             InitializeComponent();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.colorModule.MainWindow_Loaded();
+            this.bodyModule.MainWindow_Loaded();
             this.ColorDisplay.Source = (this.isColorChecked) ? this.colorModule.getImageSource() : null;
+            this.BodyDisplay.Source = (this.isColorChecked) ? this.bodyModule.getImageSource() : null;
         }
 
         private void Toggle_Color(object sender, RoutedEventArgs e)
         {
             this.isColorChecked = !this.isColorChecked;
             this.ColorDisplay.Source = (this.isColorChecked) ? this.colorModule.getImageSource() : null;
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            this.bodyModule.MainWindow_Closing();
+
+            if (this.kinectSensor != null)
+            {
+                this.kinectSensor.Close();
+                this.kinectSensor = null;
+            }
         }
     }
 }
